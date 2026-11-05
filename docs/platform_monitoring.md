@@ -69,3 +69,92 @@ This project is developed using Databricks Free Edition.
 Production workspace administration, configurable compute policies, enterprise alerting and cloud infrastructure provisioning are not claimed as completed capabilities.
 
 These are documented as future production deployment considerations.
+
+## Extended Platform Observability
+
+### 1. Monitoring Snapshot
+
+The `platform_monitoring_history` Delta table stores timestamped platform metrics.
+
+Monitored components:
+- Bronze record count
+- Silver record count
+- Incremental target record count
+- Gold analytics table record counts
+- Bronze-to-Silver reconciliation
+- Silver-to-Incremental reconciliation
+
+### 2. Delta Lake Transaction Monitoring
+
+The observability notebook inspects Delta transaction history using DESCRIBE HISTORY.
+
+Captured metrics include:
+- Table version
+- Operation type
+- Execution timestamp
+- MERGE execution time
+- Inserted and updated records
+- Output records
+- Files added
+
+### 3. Data Quality Monitoring
+
+Historical data quality runs are grouped by run ID.
+
+Metrics include:
+- Total checks
+- Passed checks
+- Failed checks
+- Overall run status
+- Execution timestamps
+
+### 4. Incremental Processing Monitoring
+
+Incremental processing audit history captures:
+- Source records
+- Inserted records
+- Updated records
+- Unchanged records
+- Reconciliation delta
+- Processing status
+
+### 5. Alert Evaluation
+
+Rule-based monitoring evaluates:
+- Empty pipeline tables
+- Bronze-to-Silver record mismatches
+- Silver-to-Incremental record mismatches
+- Data quality failures
+- Incremental processing failures
+- Incremental reconciliation mismatches
+
+Alert evaluations are retained in:
+`workspace.video_game_sales.platform_alert_history`
+
+Healthy evaluations are recorded as `NO_ALERTS`.
+
+### 6. Historical Metrics
+
+Monitoring snapshots are retained in:
+`workspace.video_game_sales.platform_monitoring_history`
+
+The notebook includes Plotly visualizations for:
+- Pipeline record-count trends
+- Gold analytics table volumes
+- Data quality history
+- Incremental processing metrics
+- Delta MERGE execution times
+- Alert evaluation history
+
+### 7. Current Implementation Scope and Limitations
+
+This project demonstrates notebook-driven, read-only platform monitoring and Delta-based metric persistence.
+
+The current implementation does not include:
+- Automated scheduled monitoring jobs
+- Email, Slack, or PagerDuty notifications
+- Databricks compute utilization monitoring
+- Production infrastructure cost monitoring
+- Enterprise workspace-level alerting
+
+Historical trend analysis becomes meaningful as additional monitoring snapshots accumulate.

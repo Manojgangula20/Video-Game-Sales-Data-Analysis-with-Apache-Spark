@@ -7,9 +7,10 @@ This project implements an end-to-end data engineering platform using Apache Spa
 
 The platform processes video game sales data through Bronze, Silver and Gold layers, supports incremental MERGE processing, and provides data quality validation and platform observability.
 
+
 ## 2. Architecture
 
-
+```mermaid
 flowchart TD
     A["Video Game Sales CSV"]
     B["Unity Catalog Volume"]
@@ -19,7 +20,10 @@ flowchart TD
     F["Incremental MERGE"]
     G["Gold Analytics"]
 
-    A --> B --> C --> D
+    A --> B
+    B --> C
+    C --> D
+
     D --> E
     D --> F
     D --> G
@@ -40,6 +44,7 @@ flowchart TD
         R["Plotly Dashboard"]
         S["Monitoring History"]
         T["Alert History"]
+
         O --> S
         P --> R
         Q --> T
@@ -58,9 +63,12 @@ flowchart TD
         U["GitHub Repository"]
         V["PySpark CI Tests"]
         W["Terraform CI Validation"]
+
         U --> V
         U --> W
     end
+```
+
 
 
 ## 3. Data Architecture

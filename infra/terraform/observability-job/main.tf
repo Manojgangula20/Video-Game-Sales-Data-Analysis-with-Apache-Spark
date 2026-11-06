@@ -17,9 +17,9 @@ resource "databricks_job" "observability" {
       source        = "GIT"
     }
 
-    max_retries                 = 1
-    min_retry_interval_millis   = 60000
-    timeout_seconds             = 3600
+    max_retries               = 1
+    min_retry_interval_millis = 60000
+    timeout_seconds           = 3600
   }
 
   max_concurrent_runs = 1

@@ -13,7 +13,7 @@ resource "databricks_job" "observability" {
     task_key = "platform_observability"
 
     notebook_task {
-      notebook_path = "notebooks/06_platform_observability"
+      notebook_path = "notebooks/06_platform_observability.ipynb"
       source        = "GIT"
     }
 

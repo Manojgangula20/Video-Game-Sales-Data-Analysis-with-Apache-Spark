@@ -7,7 +7,7 @@ Manage the Databricks platform observability job using Terraform.
 
 ## Managed Resource
 
-- Databricks multi-task job
+- Databricks single-task job using serverless compute
 - GitHub-backed notebook source
 - Retry configuration
 - Execution timeout

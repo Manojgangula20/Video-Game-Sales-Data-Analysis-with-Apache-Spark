@@ -145,6 +145,13 @@ For detailed architecture and implementation boundaries, see [Architecture Docum
 | CI/CD | GitHub Actions |
 | Version control | Git, GitHub |
 
+## 📊 Platform Observability
+
+The platform includes monitoring for pipeline execution, data quality,
+incremental processing, and cross-layer reconciliation.
+
+![Platform Monitoring Snapshot](docs/images/platform-monitoring-snapshot.png)
+
 ## Data Pipeline
 
 The project follows the Medallion Architecture.

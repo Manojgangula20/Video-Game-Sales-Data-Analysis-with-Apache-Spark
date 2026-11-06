@@ -6,13 +6,13 @@ on:
     branches:
       - main
     paths:
-      - 'infra/terraform/observability-job/**'
+      - 'infra/terraform/aws-data-platform/**'
       - '.github/workflows/terraform-ci.yml'
   pull_request:
     branches:
       - main
     paths:
-      - 'infra/terraform/observability-job/**'
+      - 'infra/terraform/aws-data-platform/**'
       - '.github/workflows/terraform-ci.yml'
 
 jobs:
@@ -26,12 +26,14 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: '1.9.8'
 
       - name: Terraform format check
-        run: terraform fmt -check -recursive infra/terraform/observability-job
+        run: terraform fmt -check -recursive infra/terraform/aws-data-platform
 
       - name: Initialize Terraform
-        run: terraform -chdir=infra/terraform/observability-job init -backend=false
+        run: terraform -chdir=infra/terraform/aws-data-platform init -backend=false
 
       - name: Validate Terraform
-        run: terraform -chdir=infra/terraform/observability-job validate
+        run: terraform -chdir=infra/terraform/aws-data-platform validate
